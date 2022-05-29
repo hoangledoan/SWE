@@ -9,12 +9,12 @@
 void testIsFuzzyEqual1ExpectTrue() //1
 {
     Point one;
-    one.x = 
-    one.y =
+    one.x = 4.25
+    one.y = 3.5
 
     Point two;
-    two.x =
-    two.y =
+    two.x = 4.25
+    two.y = 3.5
 
     double epsilon = 0.00001
     
@@ -25,10 +25,10 @@ void testIsFuzzyEqual1ExpectTrue() //1
 void testIsFuzzyEqual2ExpectTrue() //2
 {
     Angle one;
-    one.value = 
+    one.value = 3.14
 
     Angle two;
-    two.value =
+    two.value = 3.14
 
     double epsilon = 0.00001
     
@@ -39,14 +39,14 @@ void testIsFuzzyEqual2ExpectTrue() //2
 void testIsFuzzyEqual3ExpectTrue() //3
 {
     Pose one;
-    one.position.x = 
-    one.position.y =
+    one.position.x = 1.25
+    one.position.y = 2.55
 
     one.orientation.value =
 
     Pose two;
-    two.position.x =
-    two.position.y =
+    two.position.x = 1.25
+    two.position.y = 2.55
 
     two.orientation.value =
 
