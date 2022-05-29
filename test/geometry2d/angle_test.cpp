@@ -1,4 +1,4 @@
-#include "angle.h"
+    #include "angle.h"
 
 #include <cmath>
 
@@ -49,61 +49,61 @@ void testGetEighthRotationExpectTrue() //6
     assert(result == M_PI_4);
 }
 
-void testGetValueBetweenMinusPiAndPiExpectTrue() //7 under construction
+void testGetValueBetweenMinusPiAndPiExpectTrue() //7
 {
     Angle angle;
-    angle.value = 3 * M_PI;
+    angle.value = M_PI;
     double result = getValueBetweenMinusPiAndPi(Angle angle);
-    assert(result == LOL);
+    assert(result == M_PI);
 }
 
-void testGetValueBetweenZeroAndTwoPiExpectTrue() //8 under construction
+void testGetValueBetweenZeroAndTwoPiExpectTrue() //8 
 {
     Angle angle;
-    angle.value = 3 * M_PI;
+    angle.value = M_PI;
     double result = getValueBetweenZeroAndTwoPi(Angle angle);
-    assert(result == LOL);
+    assert(result == M_PI);
 }
 
-void testMultiplyAngleExpectTrue() //9 under construction
+void testMultiplyAngleExpectTrue() //9 
 {
     Angle angle;
-    angle.value = 3 * M_PI;
+    angle.value = M_PI;
 
-    double factor = 
+    double factor = 2
     Angle result = multiplyAngle(Angle angle, double factor);
-    assert(result == LOL);
+    assert(result == 2 * M_PI);
 }
 
-void testAddAnglesExpectTrue() //10 under construction
+void testAddAnglesExpectTrue() //10 
 {
     Angle one;
-    one.value = LOL;
+    one.value = M_PI;
 
     Angle two;
-    two.value = 
+    two.value = M_PI;
 
     Angle result = addAngles(Angle one, Angle two);
-    assert(result == LOL);
+    assert(result == 2 * M_PI);
 }
 
-void testSubtractAnglesExpectTrue() //11 under construction
+void testSubtractAnglesExpectTrue() //11 
 {
     Angle one;
-    one.value = LOL;
+    one.value = 2 * M_PI;
 
     Angle two;
-    two.value = 
+    two.value = M_PI;
 
     Angle result = subtractAngles(Angle one, Angle two);
-    assert(result == LOL);
+    assert(result == M_PI);
 }
 
 void testCreateAngleExpectTrue() //12 under construction
 {
     Point start;
     start.x =  
-    start.y =
+    start.y = 
 
     Point end;
     end.x = 
@@ -113,34 +113,34 @@ void testCreateAngleExpectTrue() //12 under construction
     assert(result == LOL);
 }
 
-void testIsEqualExpectTrue() //13 under construction
+void testIsEqualExpectTrue() //13 
 {
     Angle one;
-    one.value = 
+    one.value = M_PI
 
     Angle two;
-    two.value =
+    two.value = M_PI
 
     bool result = isEqual(Angle one, Angle two);
     assert(result == true);
 }
 
-void testIsObtuseExpectTrue() //14 under construction
+void testIsObtuseExpectTrue() //14 
 {
     Angle angle;
-    angle.value = 
+    angle.value > M_PI_2
 
     bool result = isObtuse(Angle angle);
     assert(result == true);
 }
 
-void testAbsExpectTrue() //15 under construction
+void testAbsExpectTrue() //15 
 {
     Angle angle;
-    angle.value = 
+    angle.value = - M_PI
 
     Angle result = abs(Angle angle);
-    assert(result == LOL);
+    assert(result == M_PI);
 }
 
 void testCreateAngleExpectTrue() //16 under construction
