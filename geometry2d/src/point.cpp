@@ -1,138 +1,26 @@
-#include "point.h"
-#include <cmath>
+#ifndef SEL_POINT_H
+#define SEL_POINT_H
+
 #include "angle.h"
-#include "geo_compare.h"
 
-#include <cassert>
-#include <cstdlib>
 
-// LMT_SEL_BEGIN
-void testCreatePointExpectTrue()
+struct Angle;
+
+struct Point
 {
-    Angle alpha;
-    alpha.value = 30;
-    double distance = 20;
-    Point p3;
-    p3 = createPoint(distance, alpha);
-    assert(roundoff(p3.x) == 3.085);
-    assert(roundoff(p3.y) == -19.761);
-}
+    double x{0.0};
+    double y{0.0};
+};
 
-void testIsEqualExpectTrue()
-{
-    Point p1;
-    p1.x = 5.25;
-    p1.y = 7.75;
+Point createPoint(double distance, Angle angle);
 
-    Point p2;
-    p2.x = 5.25;
-    p2.y = 7.75;
+bool isEqual(Point point1, Point point2);
+Point addPoints(Point one, Point two);
+Point subtractPoints(Point one, Point two);
+Point multiplyPoint(Point point, double factor);
 
-    double epsilon = 0.00001;
+double getLength(Point point);
+double distanceTo(Point one, Point two);
+void rotate(Point& point, Angle angle);
 
-    assert(isFuzzyEqual(p1, p2, epsilon));
-}
-
-void testDistanceToExpectTrue()
-{
-    Point p1;
-    p1.x = 5.6;
-    p1.y = 7.7;
-
-    Point p2;
-    p2.x = 24.3;
-    p2.y = 35.2;
-
-    assert(roundoff(distanceTo(p1, p2)) == 33.256);
-}
-
-void testGetLengthExpectTrue()
-{
-    Point point;
-    point.x = 5.25;
-    point.y = 7.75;
-
-    assert(roundoff(getLength(point)) == 9.361);
-}
-
-void testSubtracPointsExpectTrue()
-{
-    Point p1;
-    p1.x = 5;
-    p1.y = 7;
-
-    Point p2;
-    p2.x = 6;
-    p2.y = 8;
-
-    Point point = subtractPoints(p1, p2);
-    Point point_expected;
-    point_expected.x = -1;
-    point_expected.y = -1;
-
-    assert(isFuzzyEqual(point, point_expected, 0.00001));
-}
-
-void testAddPointsExpectTrue()
-{
-    Point p1;
-    p1.x = 4.25;
-    p1.y = 6.47;
-
-    Point p2;
-    p2.x = 3.62;
-    p2.y = 9.43;
-
-    Point point = addPoints(p1, p2);
-    Point point_expected;
-    point_expected.x = 7.87;
-    point_expected.y = 15.9;
-
-    assert(isFuzzyEqual(point, point_expected, 0.00001));
-}
-
-void testMultiplyPointExpectTrue()
-{
-    Point point;
-    point.x = 6.4;
-    point.y = 23.6;
-
-    Point point_x = multiplyPoint(point, 4.0);
-    Point point_expected;
-    point_expected.x = 25.6;
-    point_expected.y = 94.4;
-    assert(isFuzzyEqual(point_x, point_expected, 0.00001));
-}
-
-void testRotateExpectTrue()
-{
-    Point point;
-    point.x = 10.2;
-    point.y = 32.4;
-
-    Angle angle;
-    angle.value = 40;
-
-    rotate(point, angle);
-
-    assert(roundoff(point.x) == -30.944);
-    assert(roundoff(point.y) == -14.009);
-}
-// LMT_SEL_END
-
-int main(int /*argc*/, char** /*argv*/)
-{
-    // Run all test functions
-    // LMT_SEL_BEGIN
-    testCreatePointExpectTrue();
-    testIsEqualExpectTrue();
-    testGetLengthExpectTrue();
-    testDistanceToExpectTrue();
-    testSubtracPointsExpectTrue();
-    testAddPointsExpectTrue();
-    testMultiplyPointExpectTrue();
-    testRotateExpectTrue();
-    // LMT_SEL_END
-
-    return EXIT_SUCCESS;
-}
+#endif  // SEL_POINT_H
