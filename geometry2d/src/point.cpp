@@ -1,26 +1,51 @@
-#ifndef SEL_POINT_H
-#define SEL_POINT_H
+#include "point.h"
 
-#include "angle.h"
+#include <cmath>
+
+#include "geo_compare.h"
 
 
-struct Angle;
-
-struct Point
+Point createPoint(double distance, Angle angle)
 {
-    double x{0.0};
-    double y{0.0};
-};
+    return Point{distance * cos(getValueBetweenMinusPiAndPi(angle)),
+                 distance * sin(getValueBetweenMinusPiAndPi(angle))};
+}
 
-Point createPoint(double distance, Angle angle);
+bool isEqual(Point point1, Point point2)
+{
+    return isFuzzyEqual(point1, point2, 0.00001);
+}
 
-bool isEqual(Point point1, Point point2);
-Point addPoints(Point one, Point two);
-Point subtractPoints(Point one, Point two);
-Point multiplyPoint(Point point, double factor);
+double getLength(Point point)
+{
+    return sqrt(point.x * point.x + point.y * point.y);
+}
 
-double getLength(Point point);
-double distanceTo(Point one, Point two);
-void rotate(Point& point, Angle angle);
+double distanceTo(Point one, Point two)
+{
+    return getLength(subtractPoints(one, two));
+}
 
-#endif  // SEL_POINT_H
+Point subtractPoints(Point one, Point two)
+{
+    return Point{one.x - two.x, one.y - two.y};
+}
+
+Point addPoints(Point one, Point two)
+{
+    return Point{one.x + two.x, one.y + two.y};
+}
+
+Point multiplyPoint(Point point, double factor)
+{
+    return Point{point.x * factor, point.y * factor};
+}
+
+void rotate(Point& point, Angle angle)
+{
+    double angleValue = getValueBetweenMinusPiAndPi(angle);
+    double xVal = point.x * cos(angleValue) - point.y * sin(angleValue);
+    double yVal = point.x * sin(angleValue) + point.y * cos(angleValue);
+    point.x = xVal;
+    point.y = yVal;
+}
